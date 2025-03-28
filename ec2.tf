@@ -1,8 +1,8 @@
 # Create EC2 Instances (Backend Servers)
 resource "aws_instance" "my_instance" {
   count                  = 2
-  ami                    = "ami-05c179eced2eb9b5b" # Replace with an appropriate AMI if needed
-  instance_type          = "t2.micro"
+  ami                    = var.ami # Replace with an appropriate AMI if needed
+  instance_type          = var.instance_type
   subnet_id              = count.index == 0 ? aws_subnet.public_subnet_1.id : aws_subnet.public_subnet_2.id
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
 
